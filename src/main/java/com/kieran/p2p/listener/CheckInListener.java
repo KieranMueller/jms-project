@@ -39,6 +39,5 @@ public class CheckInListener implements MessageListener {
         } catch (JMSException e) {
             e.printStackTrace();
         }
-
     }
 }
