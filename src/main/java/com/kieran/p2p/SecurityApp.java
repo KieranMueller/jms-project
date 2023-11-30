@@ -18,9 +18,7 @@ public class SecurityApp {
         try (ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory();
              JMSContext jmsContext = cf.createContext()) {
 
-            jmsContext.setClientID("SecurityApp");
-
-            JMSConsumer consumer = jmsContext.createDurableConsumer(topic, "consumer1");
+            JMSConsumer consumer = jmsContext.createConsumer(topic, "amount > 10");
 
             Message message = consumer.receive();
 
@@ -48,7 +46,7 @@ public class SecurityApp {
             System.out.println("At " + time + ", an amount of $" + amount + " was paid to " + paidTo + " at " + location);
             System.out.println("Placing temporary hold on account, please contact support: 1-800-242-9088");
         } else {
-            // do nothing
+            System.out.println("Security checks passed");
         }
     }
 }
