@@ -18,7 +18,8 @@ public class SecurityApp {
         try (ActiveMQConnectionFactory cf = new ActiveMQConnectionFactory();
              JMSContext jmsContext = cf.createContext()) {
 
-            JMSConsumer consumer = jmsContext.createConsumer(topic, "amount > 10");
+            JMSConsumer consumer = jmsContext.createConsumer(topic,
+                    "amount > 10 OR JMSPriority BETWEEN 5 AND 7");
 
             Message message = consumer.receive();
 
